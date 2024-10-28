@@ -3,77 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WORK IN PROGRESS</title>
-  <style>
-    /* Estilos generales */
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f9;
-      color: #333;
-    }
-
-    /* Encabezado */
-    header {
-      background-color: #6c5ce7;
-      color: #fff;
-      padding: 10px 20px;
-      text-align: center;
-    }
-
-    /* Contenedor principal */
-    .container {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Títulos del índice */
-    h1, h2 {
-      color: #6c5ce7;
-    }
-
-    /* Estilos de la lista */
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    li {
-      padding: 8px 0;
-      border-bottom: 1px solid #ddd;
-    }
-
-    /* Enlaces */
-    a {
-      text-decoration: none;
-      color: #0984e3;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  <title>Portafolio</title>
+  <link rel="stylesheet" href="Estilos/index.css">
 </head>
 <body>
-
   <!-- Encabezado -->
   <header>
-    <h1>Work In Progress</h1>
+    <h1>Mi Portafolio</h1>
+    <p>Bienvenido a mi sitio web</p>
   </header>
 
-  <!-- Contenedor principal -->
-  <div class="container">
-    
-
-    <!-- Secciones del contenido -->
-   
+  <!-- Contenedor de botones -->
+  <div class="button-container">
+    <button class="portfolio-btn" onclick="navigateTo('#about')">Sobre Mí</button>
+    <button class="portfolio-btn" onclick="navigateTo('#projects')">Proyectos</button>
+    <button class="portfolio-btn" onclick="navigateTo('#skills')">Habilidades</button>
+    <button class="portfolio-btn" onclick="navigateTo('#contact')">Contacto</button>
   </div>
 
+  <!-- Secciones del portafolio -->
+  <section id="about">
+    <h2>Sobre Mí</h2>
+    <p>Aquí puedes conocer más sobre mí.</p>
+  </section>
+
+  <section id="projects">
+    <h2>Proyectos</h2>
+    <p>Aquí puedes ver mis proyectos.</p>
+  </section>
+
+  <section id="skills">
+    <h2>Habilidades</h2>
+    <p>Aquí puedes conocer mis habilidades.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contacto</h2>
+    <p>Puedes contactarme aquí.</p>
+  </section>
+
+  <!-- Scripts -->
+  <script src="JS/index.js"></script>
 </body>
 </html>
