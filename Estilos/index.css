@@ -1,4 +1,13 @@
 /* Estilos generales */
+
+/* Asegura que el body y html ocupen el 100% del alto */
+html, body {
+  height: 100%;  /* Asegura que el body ocupe el 100% de la altura de la ventana */
+  margin: 0; /* Elimina márgenes que puedan causar desplazamiento */
+  padding: 0; /* Elimina cualquier padding adicional */
+  overflow-x: hidden; /* Evita el desbordamiento horizontal */
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -6,6 +15,7 @@ body {
   background-color: #f5f5f5;
   color: #333;
   overflow-x: hidden; /* Evita el desbordamiento horizontal */
+  overflow-y: scroll; /* Habilita el desplazamiento vertical */
 }
 
 header {
