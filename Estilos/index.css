@@ -66,11 +66,11 @@ p {
 
 /* Estilos de las secciones */
 section {
-  padding: 50px 20px;
+  padding: 3% 1%;
   text-align: justify;
-  margin-top: 50px;
+  margin-top: 5%;
   background-color: #e1bee7;
-  margin-bottom: 20px;
+  margin-bottom: 2%;
 }
 
 #sobre_mi {
@@ -80,7 +80,8 @@ section {
   grid-template-rows: 0.5fr 2fr;
   gap: 3%;
 }
-#sobre_mi > #titulo{
+
+#sobre_mi > #titulo {
   grid-row: 1;
   grid-column: 1;
   grid-column-start: 1;
@@ -88,33 +89,33 @@ section {
   text-align: center;
 }
 
-#sobre_mi > #yo{
+#sobre_mi > #yo {
   grid-row: 2;
   grid-column: 1;
   padding-left: 25%;
   text-align: center;
+  width: 80%;
 }
 
-#sobre_mi>#desc1{
+#sobre_mi > #desc1 {
   grid-row: 2;
   grid-column: 2;
   text-align: justify;
   line-height: 1.5em;
 }
-#proyectos {
-  background-color: #e1bee7;
-}
 
-#habilidades {
-  background-color: #ce93d8;
-}
-
-#contacto {
-  background-color: #ba68c8;
+#sobre_mi > #estudios {
+  grid-row: 3;
+  grid-column: 1 / span 2;  /* Ocupa las dos columnas en pantallas grandes */
+  text-align: center;
+  font-size: 1.1em;
+  line-height: 1.5em;
+  margin-top: 2%;
+  color: #333;
 }
 
 /* Media Query para dispositivos móviles */
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .button-container {
     grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas pequeñas */
   }
@@ -131,7 +132,6 @@ section {
     padding: 40px 20px;
   }
 
-
   #sobre_mi {
     gap: 2%;
     background-color: #f3e5f5;
@@ -139,27 +139,33 @@ section {
     grid-template-columns: 100%;
     grid-template-rows: 5% 25% 70%;
   }
-  #sobre_mi > #titulo{
+
+  #sobre_mi > #titulo {
     grid-row: 1;
     grid-column: 1;
     grid-column-start: 1;
     grid-column-end: 3;
     text-align: center;
   }
-  
-  #sobre_mi > #yo{
+
+  #sobre_mi > #yo {
     grid-row: 2;
     grid-column: 1;
     padding-left: 30%;
     margin-top: 2%;
-    width: 35%;
+    width: 50%;
   }
-  
-  #sobre_mi>#desc1{
+
+  #sobre_mi > #desc1 {
     grid-row: 3;
     grid-column: 1;
     text-align: justify;
-    margin-top: 5%;
+    margin-top: 25%;
+  }
+
+  /* Oculta el bloque de estudios en pantallas pequeñas */
+  #sobre_mi > #estudios {
+    display: none; /* Oculta el bloque en pantallas pequeñas */
   }
 }
 
