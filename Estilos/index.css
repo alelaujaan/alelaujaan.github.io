@@ -94,6 +94,7 @@ section {
 #sobre_mi>#desc1{
   grid-row: 1;
   grid-column: 2;
+  text-align: justify;
 }
 #proyectos {
   background-color: #e1bee7;
