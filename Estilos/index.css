@@ -1,5 +1,7 @@
 /* Estilos generales */
-
+::-webkit-scrollbar {
+  display: none; /* Oculta la barra de desplazamiento en Chrome, Safari, y Edge */
+}
 /* Asegura que el body y html ocupen el 100% del alto */
 html, body {
   height: 100%;  /* Asegura que el body ocupe el 100% de la altura de la ventana */
