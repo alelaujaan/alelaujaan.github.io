@@ -152,6 +152,7 @@ section {
     grid-row: 2;
     grid-column: 1;   
     margin-top: 2%;
+    padding-right: 15%;
     width: 50%;
   }
 
