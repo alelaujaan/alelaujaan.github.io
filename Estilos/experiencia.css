@@ -1,4 +1,5 @@
 body {
+    font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
     transition: all 0.3s ease;
 }
@@ -7,42 +8,43 @@ body {
     margin-top: 40px;
 }
 
+/* Título principal */
 h1 {
     font-size: 2.5rem;
     font-weight: bold;
-}
-img{
-    max-width: 80px;
+    color: #333;
+    margin-bottom: 30px;
 }
 
+/* Estilo de las tarjetas de experiencia */
 .experiencia-container {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
 }
 
 .experiencia-card {
     position: relative;
     transition: all 0.3s ease;
+    background-color: #ffffff;
+    border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
 .experiencia-card:hover {
     z-index: 10;
     transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-.experiencia-card:hover::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    z-index: -1;
+.experiencia-card img {
+    width: 80px;
+    border-radius: 5px;
+    margin: 20px;
 }
 
+/* Estilo del contenido dentro de las tarjetas */
 .card-body {
     background-color: white;
     padding: 20px;
@@ -52,7 +54,8 @@ img{
 }
 
 .card-body h5 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+    color: #333;
 }
 
 .fecha {
@@ -60,7 +63,7 @@ img{
     top: 10px;
     right: 20px;
     font-size: 1rem;
-    color: gray;
+    color: #aaa;
 }
 
 .fecha span {
