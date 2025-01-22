@@ -1,0 +1,68 @@
+body {
+    background-color: #f4f4f4;
+    transition: all 0.3s ease;
+}
+
+.container {
+    margin-top: 40px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+img{
+    max-width: 80px;
+}
+
+.experiencia-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.experiencia-card {
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.experiencia-card:hover {
+    z-index: 10;
+    transform: translateY(-10px);
+}
+
+.experiencia-card:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+}
+
+.card-body {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.card-body h5 {
+    font-size: 1.5rem;
+}
+
+.fecha {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 1rem;
+    color: gray;
+}
+
+.fecha span {
+    display: block;
+}
