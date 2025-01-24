@@ -40,6 +40,11 @@ p {
 .content-block .text {
     padding-left: 20px;
 }
+.card-body {
+    height: 500px; /* Ajusta el valor según la altura que desees */
+    overflow-y: auto; /* Añade barra de desplazamiento si el contenido excede la altura */
+}
+
 
 /* Media Query para pantallas más pequeñas */
 @media (max-width: 768px) {
