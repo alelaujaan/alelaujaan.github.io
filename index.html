@@ -1,214 +1,1276 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="es">
 
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Portafolio Rico</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="Estilos/index.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    <script src='main.js'></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Alejandro Fernández Rico — Portfolio</title>
+    <meta name="description"
+        content="Portfolio de Alejandro Fernández Rico — Backend, Ciberseguridad, Automatización y Soporte IT." />
+    <link rel="stylesheet" href="./styles.css" />
 </head>
+<style>
+    :root {
+        --bg: #070A10;
+        --panel: rgba(255, 255, 255, .04);
+        --panel2: rgba(255, 255, 255, .06);
+        --text: rgba(255, 255, 255, .90);
+        --muted: rgba(255, 255, 255, .62);
+        --line: rgba(255, 255, 255, .10);
+        --accent: #38bdf8;
+        --accent2: #a78bfa;
+        --ok: #34d399;
+        --warn: #fbbf24;
+        --shadow: 0 20px 50px rgba(0, 0, 0, .55);
+        --radius: 18px;
+        --radius2: 22px;
+        --max: 1120px;
+        --pad: 22px;
+    }
+
+    * {
+        box-sizing: border-box
+    }
+
+    html,
+    body {
+        height: 100%
+    }
+
+    body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        background: var(--bg);
+        color: var(--text);
+        overflow-x: hidden;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none
+    }
+
+    button {
+        font: inherit
+    }
+
+    ::selection {
+        background: rgba(56, 189, 248, .22)
+    }
+
+    .bg {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        overflow: hidden
+    }
+
+    .grid {
+        position: absolute;
+        inset: -20%;
+        background-image: radial-gradient(circle at 1px 1px, rgba(56, 189, 248, .12) 1px, transparent 0);
+        background-size: 28px 28px;
+        opacity: .65;
+        filter: blur(.2px);
+    }
+
+    .noise {
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+        mix-blend-mode: overlay;
+        pointer-events: none;
+    }
+
+    .glow {
+        position: absolute;
+        width: 900px;
+        height: 900px;
+        left: 50%;
+        top: -260px;
+        transform: translateX(-50%);
+        background: radial-gradient(circle, rgba(56, 189, 248, .22), transparent 55%);
+        filter: blur(6px);
+        opacity: .9;
+    }
+
+    .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(14px);
+        background: rgba(7, 10, 16, .55);
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 18px;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px
+    }
+
+    .brand__dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        box-shadow: 0 0 0 6px rgba(56, 189, 248, .08);
+    }
+
+    .brand__text {
+        font-weight: 800;
+        letter-spacing: .4px
+    }
+
+    .nav {
+        display: flex;
+        gap: 16px;
+        align-items: center
+    }
+
+    .nav__link {
+        padding: 10px 10px;
+        color: var(--muted);
+        border-radius: 12px;
+        transition: background .2s ease, color .2s ease;
+    }
+
+    .nav__link:hover {
+        background: rgba(255, 255, 255, .05);
+        color: var(--text)
+    }
+
+    .nav__link.active {
+        color: var(--text);
+        background: rgba(56, 189, 248, .10);
+        box-shadow: inset 0 0 0 1px rgba(56, 189, 248, .15)
+    }
+
+    .actions {
+        display: flex;
+        gap: 10px;
+        align-items: center
+    }
+
+    .btn {
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, .04);
+        color: var(--text);
+        padding: 10px 14px;
+        border-radius: 14px;
+        cursor: pointer;
+        transition: transform .12s ease, background .2s ease, border-color .2s ease;
+    }
+
+    .btn:hover {
+        background: rgba(255, 255, 255, .07)
+    }
+
+    .btn:active {
+        transform: translateY(1px)
+    }
+
+    .btn--primary {
+        border-color: rgba(56, 189, 248, .25);
+        background: linear-gradient(135deg, rgba(56, 189, 248, .18), rgba(167, 139, 250, .12));
+        box-shadow: 0 14px 40px rgba(0, 0, 0, .35);
+    }
+
+    .btn--primary:hover {
+        border-color: rgba(56, 189, 248, .42)
+    }
+
+    .btn--ghost {
+        background: rgba(255, 255, 255, .03)
+    }
+
+    .burger {
+        display: none;
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, .03);
+        cursor: pointer;
+    }
+
+    .burger span {
+        display: block;
+        height: 2px;
+        margin: 7px 10px;
+        background: rgba(255, 255, 255, .70);
+        border-radius: 99px
+    }
+
+    .drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: min(360px, 90vw);
+        background: rgba(10, 14, 22, .92);
+        border-left: 1px solid var(--line);
+        transform: translateX(102%);
+        transition: transform .22s ease;
+        z-index: 30;
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+        backdrop-filter: blur(16px);
+    }
+
+    .drawer.open {
+        transform: translateX(0)
+    }
+
+    .drawer__head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px
+    }
+
+    .drawer__title {
+        font-weight: 800
+    }
+
+    .drawer__links {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 10px 0
+    }
+
+    .drawer__links a {
+        padding: 12px 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, .06);
+        background: rgba(255, 255, 255, .03);
+        color: var(--muted);
+    }
+
+    .drawer__links a:hover {
+        color: var(--text);
+        border-color: rgba(56, 189, 248, .18)
+    }
+
+    .drawer__foot {
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px
+    }
+
+    .w-full {
+        width: 100%
+    }
+
+    .app {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 26px 18px 64px
+    }
+
+    .section {
+        padding: 26px 0
+    }
+
+    .section__head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 16px;
+    }
+
+    .h2 {
+        font-size: 22px;
+        margin: 0;
+        letter-spacing: .2px;
+    }
+
+    .kicker {
+        color: var(--muted);
+        font-size: 13px
+    }
+
+    .hero {
+        padding: 26px 0 8px;
+    }
+
+    .heroCard {
+        border: 1px solid rgba(255, 255, 255, .10);
+        background: linear-gradient(180deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .02));
+        border-radius: var(--radius2);
+        box-shadow: var(--shadow);
+        padding: 26px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .heroTop {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 18px;
+    }
+
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(56, 189, 248, .22);
+        background: rgba(56, 189, 248, .08);
+        color: rgba(255, 255, 255, .85);
+        font-size: 13px;
+    }
+
+    .pulse {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--ok);
+        box-shadow: 0 0 0 6px rgba(52, 211, 153, .12);
+    }
+
+    .h1 {
+        font-size: clamp(30px, 5vw, 46px);
+        margin: 4px 0 6px;
+        letter-spacing: .2px;
+    }
+
+    .subtitle {
+        color: var(--muted);
+        font-size: 16px;
+        margin: 0 0 18px;
+    }
+
+    .heroActions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap
+    }
+
+    .chips {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 16px
+    }
+
+    .chip {
+        border: 1px solid rgba(255, 255, 255, .10);
+        background: rgba(255, 255, 255, .03);
+        color: rgba(255, 255, 255, .72);
+        padding: 8px 10px;
+        border-radius: 999px;
+        font-size: 13px;
+    }
+
+    .grid2 {
+        display: grid;
+        grid-template-columns: 1.1fr .9fr;
+        gap: 16px
+    }
+
+    @media (max-width: 980px) {
+        .grid2 {
+            grid-template-columns: 1fr
+        }
+    }
+
+    .card {
+        border: 1px solid rgba(255, 255, 255, .10);
+        background: rgba(255, 255, 255, .03);
+        border-radius: var(--radius);
+        padding: 16px;
+        box-shadow: 0 0 0 1px rgba(56, 189, 248, .06);
+    }
+
+    .card:hover {
+        border-color: rgba(56, 189, 248, .22)
+    }
+
+    .cardTitle {
+        font-weight: 800;
+        margin: 0 0 6px
+    }
+
+    .cardText {
+        color: var(--muted);
+        margin: 0;
+        line-height: 1.55
+    }
+
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px
+    }
+
+    @media (max-width: 980px) {
+        .cards {
+            grid-template-columns: 1fr
+        }
+    }
+
+    .tagRow {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 12px
+    }
+
+    .tag {
+        font-size: 12px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, .10);
+        background: rgba(255, 255, 255, .02);
+        color: rgba(255, 255, 255, .68);
+    }
+
+    .tag.ok {
+        border-color: rgba(52, 211, 153, .22);
+        background: rgba(52, 211, 153, .08)
+    }
+
+    .tag.accent {
+        border-color: rgba(56, 189, 248, .22);
+        background: rgba(56, 189, 248, .08)
+    }
+
+    .tag.warn {
+        border-color: rgba(251, 191, 36, .22);
+        background: rgba(251, 191, 36, .08)
+    }
+
+    .timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 12px
+    }
+
+    .titem {
+        display: grid;
+        grid-template-columns: 170px 1fr;
+        gap: 12px;
+        padding: 14px;
+        border-radius: var(--radius);
+        border: 1px solid rgba(255, 255, 255, .10);
+        background: rgba(255, 255, 255, .03);
+    }
+
+    @media (max-width: 680px) {
+        .titem {
+            grid-template-columns: 1fr
+        }
+    }
+
+    .when {
+        color: rgba(255, 255, 255, .70);
+        font-weight: 700
+    }
+
+    .where {
+        color: var(--muted);
+        font-size: 13px;
+        margin-top: 4px
+    }
+
+    .role {
+        font-weight: 900;
+        margin: 0 0 6px
+    }
+
+    .bullets {
+        margin: 0;
+        padding-left: 16px;
+        color: var(--muted);
+        line-height: 1.6
+    }
+
+    .bullets li {
+        margin: 4px 0
+    }
+
+    .stackGrid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px
+    }
+
+    @media (max-width: 980px) {
+        .stackGrid {
+            grid-template-columns: repeat(2, 1fr)
+        }
+    }
+
+    .stackItem {
+        border: 1px solid rgba(255, 255, 255, .10);
+        background: rgba(255, 255, 255, .03);
+        border-radius: 16px;
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+    .stackItem b {
+        font-weight: 900
+    }
+
+    .stackItem span {
+        color: var(--muted);
+        font-size: 13px
+    }
+
+    .contactGrid {
+        display: grid;
+        grid-template-columns: 1.1fr .9fr;
+        gap: 14px
+    }
+
+    @media (max-width: 980px) {
+        .contactGrid {
+            grid-template-columns: 1fr
+        }
+    }
+
+    .kv {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, .10);
+        background: rgba(255, 255, 255, .03)
+    }
+
+    .kv .k {
+        color: var(--muted)
+    }
+
+    .kv .v {
+        font-weight: 800
+    }
+
+    .copyBtn {
+        padding: 8px 10px;
+        border-radius: 12px
+    }
+
+    .small {
+        font-size: 12px;
+        color: var(--muted)
+    }
+
+    .footer {
+        border-top: 1px solid var(--line);
+        padding: 18px;
+        background: rgba(7, 10, 16, .55);
+        backdrop-filter: blur(14px);
+    }
+
+    .footer__inner {
+        max-width: var(--max);
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        flex-wrap: wrap
+    }
+
+    .footer__links {
+        display: flex;
+        gap: 14px;
+        color: var(--muted)
+    }
+
+    .footer__links a:hover {
+        color: var(--text)
+    }
+
+    .muted {
+        color: var(--muted)
+    }
+
+    .reveal {
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity .45s ease, transform .45s ease
+    }
+
+    .reveal.in {
+        opacity: 1;
+        transform: translateY(0)
+    }
+
+    @media (max-width: 980px) {
+
+        .nav,
+        .actions {
+            display: none
+        }
+
+        .burger {
+            display: block
+        }
+    }
+</style>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Mi PortFolio</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Quien Soy</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="formacion.html">Formación</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="experiencia.html">Experiencia</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="mailto:ricoaf92@gmail.com">Contacto</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container my-5">
-        <div class="row content-block">
-            <div class="col-md-4">
-                <img src="IMGS/shared image.jpg" alt="Imagen de ejemplo">
-            </div>
-            <div class="col-md-8 text">
-                <h2>Alejandro Fernández</h2>
-                <p><strong>Desarrollador Fullstack | Estudiante de Ciberseguridad y Hacking Ético</strong></p>
-                <p>Soy un desarrollador fullstack con menos de dos años de experiencia, especializado en el desarrollo
-                    de aplicaciones web utilizando tecnologías como PHP, Python, Java, JavaScript y sus frameworks más
-                    relevantes (Laravel, Django, Spring, React, Vue.js). Mi enfoque principal es crear soluciones
-                    eficientes, escalables y seguras, siempre adaptándome a las necesidades del proyecto y buscando la
-                    mejor experiencia de usuario.</p>
-                <p>Actualmente, estoy profundizando mis conocimientos en ciberseguridad y hacking ético a través de un
-                    máster, con el objetivo de integrar prácticas de seguridad en cada una de las soluciones que
-                    desarrollo. Además, cuento con una formación previa en el Grado Medio en Sistemas Microinformáticos
-                    y Redes (SMIR) y el Grado Superior en Desarrollo de Aplicaciones Multiplataforma (DAM), lo que me ha
-                    brindado una base sólida en el mundo de la programación y los sistemas.</p>
-                <p>Mi pasión por la tecnología me lleva a estar siempre en constante aprendizaje, buscando mejorar tanto
-                    mis habilidades de desarrollo como mis conocimientos en seguridad informática. Mi objetivo es
-                    aportar valor real a las empresas y proyectos con los que colaboro, ofreciendo soluciones seguras,
-                    optimizadas y a la vanguardia de las últimas tendencias tecnológicas.</p>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <h2>Tecnologias que manejo</h2>
-            <div class="col-12 marquee-container">
-                <div class="marquee-content">
-                    <p>PHP, Laravel, MySQL | Python, Django, Flask | Java, Spring, Hibernate | JavaScript, React, Vue.js
-                        | Node.js, Express, MongoDB | HTML, CSS, Bootstrap | Git, Docker, Nginx</p>
-                </div>
-            </div>
-        </div>
-        <div class="container my-5">
-            <!-- Sección de Proyectos -->
-            <div class="projects-section">
-                <h2>Mis Proyectos</h2>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card project-card">
-                            <img src="IMGS/calls.png" class="card-img-top" alt="Proyecto 1">
-                            <div class="card-body">
-                                <h5 class="card-title">CallsV2</h5>
-                                <p class="card-text">Este proyecto tiene como objetivo mejorar la coordinación entre los
-                                    técnicos y el equipo de dispatch de una empresa mediante una plataforma eficiente
-                                    para la gestión y organización de tickets. El sistema permite crear, asignar, y
-                                    rastrear el progreso de los tickets de soporte, asegurando una resolución rápida y
-                                    una comunicación fluida entre los diferentes equipos. La herramienta facilita la
-                                    priorización de tareas, el seguimiento en tiempo real y la optimización del flujo de
-                                    trabajo, mejorando la productividad y la satisfacción del cliente.</p>
-
-                                <!-- Slider de Tecnologías -->
-                                <div class="technologies-slider">
-                                    <div class="slider-content">
-                                        <span>PHP |</span>
-                                        <span>JavaScript |</span>
-                                        <span>HTML,CSS |</span>
-                                        <span>MySQL</span>
-                                    </div>
-                                </div>
-
-                                <a href="https://github.com/alelaujaan/CallsV2" class="btn btn-primary"
-                                    target="_blank">Ver Proyecto</a>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-- Tarjeta de Proyecto 2 -->
-                    <div class="col-md-4">
-                        <div class="card project-card">
-                            <img src="IMGS/ricotool.png" class="card-img-top" alt="Proyecto 2">
-                            <div class="card-body">
-                                <h5 class="card-title">Rico-Tool</h5>
-                                <p class="card-text">Este script está diseñado para ser usado por administradores de
-                                    sistemas o técnicos de redes que necesiten realizar tareas de configuración y
-                                    gestión de dispositivos en una red. Su uso está orientado a ambientes empresariales
-                                    donde se gestionan servidores, dispositivos de almacenamiento y equipos de red.</p>
-                                <div class="technologies-slider">
-                                    <div class="slider-content">
-                                        <span>Python</span>
-                                    </div>
-                                </div>
-                                <a href="https://github.com/alelaujaan/RICO_HERRAMIENTA" class="btn btn-primary"
-                                    target="_blank">Ver Proyecto</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tarjeta de Proyecto 3 -->
-                    <div class="col-md-4">
-                        <div class="card project-card">
-                            <img src="IMGS/smartify.png" class="card-img-top" alt="Proyecto 3">
-                            <div class="card-body">
-                                <h5 class="card-title">SMARTIFY</h5>
-                                <p class="card-text">Esta aplicación web está diseñada para facilitar la gestión y
-                                    control de los microcontroladores integrados en una casa inteligente, ofreciendo a
-                                    los usuarios una interfaz intuitiva y accesible para gestionar los dispositivos
-                                    conectados en su hogar. El objetivo principal de la aplicación es permitir un
-                                    control centralizado y eficiente de todos los dispositivos electrónicos, sensores y
-                                    sistemas automatizados dentro de la casa, mejorando la comodidad, la eficiencia
-                                    energética y la seguridad.</p>
-                                <div class="technologies-slider">
-                                    <div class="slider-content">
-                                        <span>PHP |</span>
-                                        <span>JavaScript |</span>
-                                        <span>MySQL |</span>
-                                        <span>HTML,CSS |</span>
-                                        <span>C++</span>
-                                    </div>
-                                </div>
-                                <a href="https://github.com/alelaujaan/SMARTIFY" class="btn btn-primary"
-                                    target="_blank">Ver Proyecto</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card project-card">
-                            <img src="IMGS/simulaciontienda.png" class="card-img-top" alt="Proyecto 3">
-                            <div class="card-body">
-                                <h5 class="card-title">Simulacion Tienda</h5>
-                                <p class="card-text">Esta aplicación permite gestionar clientes y compras de forma
-                                    sencilla. Los usuarios pueden registrarse, realizar pedidos seleccionando productos
-                                    de un catálogo y obtener un código para el seguimiento de sus compras. Además,
-                                    ofrece la posibilidad de consultar o buscar información de clientes registrados y
-                                    recibir notificaciones sobre el estado de sus pedidos.</p>
-                                <div class="technologies-slider">
-                                    <div class="slider-content">
-                                        <span>Python</span>
-                                    </div>
-                                </div>
-                                <a href="https://github.com/alelaujaan/sistema-ventas" class="btn btn-primary"
-                                    target="_blank">Ver Proyecto</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card project-card">
-                            <img src="IMGS/erp-farmacia.png" class="card-img-top" alt="Proyecto 3">
-                            <div class="card-body">
-                                <h5 class="card-title">ERP FARMACIA</h5>
-                                <p class="card-text">Este ERP para farmacias facilita la gestión integral del negocio.
-                                    Permite registrar y administrar clientes, controlar el inventario de medicamentos,
-                                    procesar ventas y generar facturas. Además, incluye herramientas para el seguimiento
-                                    de pedidos, la gestión de proveedores y el cumplimiento de normativas sanitarias.
-                                    Todo está diseñado para optimizar las operaciones y mejorar la atención al cliente.
-                                </p>
-                                <div class="technologies-slider">
-                                    <div class="slider-content">
-                                        <span>Python</span>
-                                        <span>TKInter</span>
-                                        <span>SQLite</span>
-                                    </div>
-                                </div>
-                                <a href="https://github.com/alelaujaan/erp-farmacia" class="btn btn-primary"
-                                    target="_blank">Ver Proyecto</a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
+    <div class="bg">
+        <div class="grid"></div>
+        <div class="noise"></div>
+        <div class="glow"></div>
     </div>
+
+    <header class="topbar">
+        <a class="brand" href="#/">
+            <span class="brand__dot"></span>
+            <span class="brand__text">AFR</span>
+        </a>
+
+        <nav class="nav" aria-label="Primary navigation">
+            <a class="nav__link" href="#/about" data-nav="about">Sobre mí</a>
+            <a class="nav__link" href="#/focus" data-nav="focus">Especialización</a>
+            <a class="nav__link" href="#/experience" data-nav="exp">Experiencia</a>
+            <a class="nav__link" href="#/stack" data-nav="stack">Stack</a>
+            <a class="nav__link" href="#/education" data-nav="edu">Formación</a>
+            <a class="nav__link" href="#/contact" data-nav="contact">Contacto</a>
+        </nav>
+
+        <div class="actions">
+            <button class="btn btn--ghost" id="langToggle" type="button" aria-label="Change language">
+                ES / EN
+            </button>
+            <a class="btn btn--primary" id="ctaTop" href="#/contact">Contactar</a>
+        </div>
+
+        <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" type="button">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <aside class="drawer" id="drawer" aria-hidden="true">
+        <div class="drawer__head">
+            <div class="drawer__title">Menu</div>
+            <button class="btn btn--ghost" id="closeDrawer" type="button" aria-label="Close menu">Cerrar</button>
+        </div>
+        <div class="drawer__links">
+            <a href="#/about" data-drawer="about">Sobre mí</a>
+            <a href="#/focus" data-drawer="focus">Especialización</a>
+            <a href="#/experience" data-drawer="exp">Experiencia</a>
+            <a href="#/stack" data-drawer="stack">Stack</a>
+            <a href="#/education" data-drawer="edu">Formación</a>
+            <a href="#/contact" data-drawer="contact">Contacto</a>
+        </div>
+        <div class="drawer__foot">
+            <button class="btn btn--ghost w-full" id="langToggle2" type="button">ES / EN</button>
+            <a class="btn btn--primary w-full" href="#/contact" id="ctaDrawer">Contactar</a>
+        </div>
+    </aside>
+
+    <main id="app" class="app" aria-live="polite"></main>
+
+    <footer class="footer">
+        <div class="footer__inner">
+            <div class="muted" id="footerMade">Hecho con HTML/CSS/JS. Hosting: GitHub Pages.</div>
+            <div class="footer__links">
+                <a href="https://github.com/alelaujaan" target="_blank" rel="noreferrer">GitHub</a>
+                <a href="mailto:ricoaf92@gmail.com">ricoaf92@gmail.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (() => {
+            // ========= Datos + i18n =========
+            const STRINGS = {
+                es: {
+                    nav: { about: "Sobre mí", focus: "Especialización", exp: "Experiencia", stack: "Stack", edu: "Formación", contact: "Contacto" },
+                    hero: {
+                        badge: "Disponible para oportunidades",
+                        title: "Alejandro Fernández Rico",
+                        subtitle: "Backend · Automatización · Seguridad",
+                        primary: "Contactar",
+                        secondary: "Ver GitHub"
+                    },
+                    about: {
+                        title: "Perfil",
+                        text:
+                            "Desarrollador backend con experiencia en proyectos end-to-end, APIs REST y buenas prácticas de seguridad. Perfil técnico polivalente: desarrollo, automatización y visión operativa (soporte IT y entornos reales)."
+                    },
+                    focus: { title: "Áreas clave" },
+                    exp: { title: "Experiencia", note: "Enfoque en impacto, entrega y mejora de procesos." },
+                    stack: { title: "Stack" },
+                    edu: { title: "Formación" },
+                    contact: { title: "Contacto", email: "Email", phone: "Teléfono", location: "Ubicación", copy: "Copiar" },
+                    footer: { made: "Hecho con HTML/CSS/JS. Hosting: GitHub Pages." }
+                },
+                en: {
+                    nav: { about: "About", focus: "Focus", exp: "Experience", stack: "Stack", edu: "Education", contact: "Contact" },
+                    hero: {
+                        badge: "Open to opportunities",
+                        title: "Alejandro Fernández Rico",
+                        subtitle: "Backend · Automation · Security",
+                        primary: "Get in touch",
+                        secondary: "View GitHub"
+                    },
+                    about: {
+                        title: "Profile",
+                        text:
+                            "Backend developer with end-to-end project experience, REST APIs and secure coding practices. Versatile technical profile: development, automation, and an operational mindset (IT support and real-world environments)."
+                    },
+                    focus: { title: "Core areas" },
+                    exp: { title: "Experience", note: "Impact, delivery, and process improvement." },
+                    stack: { title: "Stack" },
+                    edu: { title: "Education" },
+                    contact: { title: "Contact", email: "Email", phone: "Phone", location: "Location", copy: "Copy" },
+                    footer: { made: "Built with HTML/CSS/JS. Hosted on GitHub Pages." }
+                }
+            };
+
+            // Contenido basado en tus CVs
+            const DATA = {
+                name: "Alejandro Fernández Rico",
+                location: { es: "Madrid, España", en: "Madrid, Spain" },
+                email: "ricoaf92@gmail.com",
+                phone: "653902999",
+                github: "https://github.com/alelaujaan",
+                chips: [
+                    { es: "Java · Spring Boot", en: "Java · Spring Boot" },
+                    { es: "PHP · Laravel", en: "PHP · Laravel" },
+                    { es: "Python · FastAPI", en: "Python · FastAPI" },
+                    { es: "JWT · REST APIs", en: "JWT · REST APIs" },
+                    { es: "Docker · GitFlow", en: "Docker · GitFlow" },
+                    { es: "Ciberseguridad Junior", en: "Junior Cybersecurity" }
+                ],
+                focus: [
+                    {
+                        key: "java",
+                        title: { es: "Backend Java", en: "Java Backend" },
+                        text: {
+                            es: "Spring Boot, JPA/Hibernate, APIs REST seguras con JWT, testing con JUnit/Mockito y contenedores con Docker.",
+                            en: "Spring Boot, JPA/Hibernate, secure REST APIs with JWT, testing with JUnit/Mockito, Dockerized services."
+                        },
+                        tags: ["Spring Boot", "JPA", "JWT", "JUnit", "Docker"]
+                    },
+                    {
+                        key: "php",
+                        title: { es: "Backend PHP", en: "PHP Backend" },
+                        text: {
+                            es: "Laravel, APIs REST, autenticación, roles/permisos y aplicaciones internas orientadas a eficiencia.",
+                            en: "Laravel, REST APIs, authentication, roles/permissions and internal apps focused on efficiency."
+                        },
+                        tags: ["Laravel", "REST", "Auth", "RBAC", "MySQL"]
+                    },
+                    {
+                        key: "python",
+                        title: { es: "Backend Python", en: "Python Backend" },
+                        text: {
+                            es: "FastAPI, automatización y scripting técnico aplicado a procesos y buenas prácticas de seguridad.",
+                            en: "FastAPI, automation and technical scripting applied to processes and secure practices."
+                        },
+                        tags: ["FastAPI", "Automation", "Scripts", "Docker", "Git"]
+                    },
+                    {
+                        key: "sec",
+                        title: { es: "Ciberseguridad Junior", en: "Junior Cybersecurity" },
+                        text: {
+                            es: "Base ofensiva/defensiva, seguridad en APIs y automatización aplicada a tareas de seguridad.",
+                            en: "Offensive/defensive foundations, API security, and automation applied to security tasks."
+                        },
+                        tags: ["API Security", "Hardening", "Linux", "Windows", "Networking"]
+                    },
+                    {
+                        key: "it",
+                        title: { es: "Soporte IT / Sistemas", en: "IT Support / Systems" },
+                        text: {
+                            es: "Helpdesk, gestión de incidencias, sistemas Windows/Linux y redes TCP/IP con mentalidad de usuario final.",
+                            en: "Helpdesk, incident handling, Windows/Linux systems and TCP/IP networking with end-user mindset."
+                        },
+                        tags: ["Helpdesk", "Windows", "Linux", "TCP/IP", "Ticketing"]
+                    },
+                    {
+                        key: "cs",
+                        title: { es: "Atención al Cliente", en: "Customer Experience" },
+                        text: {
+                            es: "Experiencia real de cara al público: comunicación, caja/venta y trabajo bajo presión en alta afluencia.",
+                            en: "Real customer-facing experience: communication, cash/retail and high-pressure environments."
+                        },
+                        tags: ["Communication", "Sales", "Cashier", "Teamwork", "Pressure"]
+                    }
+                ],
+                experience: [
+                    {
+                        when: "2025",
+                        org: "L4E — Consultora",
+                        role: { es: "Backend / Fullstack (Java · Python · PHP)", en: "Backend / Fullstack (Java · Python · PHP)" },
+                        bullets: {
+                            es: [
+                                "Desarrollo de servicios backend y APIs REST para clientes.",
+                                "Implementación de autenticación JWT y buenas prácticas.",
+                                "Testing (JUnit/Mockito) y uso de Docker/GitFlow en entorno profesional."
+                            ],
+                            en: [
+                                "Built backend services and REST APIs for clients.",
+                                "Implemented JWT authentication and secure practices.",
+                                "Unit testing (JUnit/Mockito) and Docker/GitFlow in professional workflows."
+                            ]
+                        }
+                    },
+                    {
+                        when: "2024",
+                        org: "StorTrec — Empresa de Hardware",
+                        role: { es: "Fullstack · Ticketing interno", en: "Fullstack · Internal ticketing system" },
+                        bullets: {
+                            es: [
+                                "Desarrollo end-to-end de una app de ticketing para técnicos internos.",
+                                "Roles, permisos, estados y paneles de gestión.",
+                                "Optimización estimada del ~50% del tiempo de gestión del equipo de dispatch."
+                            ],
+                            en: [
+                                "End-to-end development of an internal ticketing app.",
+                                "Roles, permissions, statuses and management dashboards.",
+                                "Estimated ~50% reduction in dispatch team handling time."
+                            ]
+                        }
+                    },
+                    {
+                        when: "2021–2023",
+                        org: "Freelance",
+                        role: { es: "Backend / Automatización", en: "Backend / Automation" },
+                        bullets: {
+                            es: [
+                                "APIs REST, lógica de negocio y acceso a BD.",
+                                "Automatización con scripts y herramientas internas.",
+                                "Gestión completa del ciclo: análisis, desarrollo y entrega."
+                            ],
+                            en: [
+                                "REST APIs, business logic and database access.",
+                                "Automation via scripts and internal tools.",
+                                "Full lifecycle ownership: analysis, development and delivery."
+                            ]
+                        }
+                    }
+                ],
+                stack: [
+                    { name: "Java", level: "Spring Boot · JPA" },
+                    { name: "PHP", level: "Laravel" },
+                    { name: "Python", level: "FastAPI · Automation" },
+                    { name: "APIs", level: "REST · JWT" },
+                    { name: "DB", level: "MySQL · PostgreSQL" },
+                    { name: "Testing", level: "JUnit · Mockito" },
+                    { name: "DevOps", level: "Docker" },
+                    { name: "VCS", level: "Git · GitFlow" },
+                    { name: "OS", level: "Linux · Windows" },
+                    { name: "Networking", level: "TCP/IP" }
+                ],
+                education: [
+                    { es: "Máster en Ciberseguridad Ofensiva y Hacking Ético — EIP", en: "Master in Offensive Cybersecurity & Ethical Hacking — EIP" },
+                    { es: "CFGS Desarrollo de Aplicaciones Multiplataforma (DAM) — CampusFP", en: "HNC Multiplatform App Development — CampusFP" },
+                    { es: "CFGM Sistemas Microinformáticos y Redes (SMIR) — CampusFP", en: "IT Systems & Networks — CampusFP" }
+                ],
+                languages: [
+                    { es: "Español — Nativo", en: "Spanish — Native" },
+                    { es: "Inglés — B2–C1", en: "English — B2–C1" }
+                ]
+            };
+
+            // ========= Estado =========
+            const storageKey = "afr_lang";
+            let lang = localStorage.getItem(storageKey) || "es";
+
+            const $app = document.getElementById("app");
+            const $langToggle = document.getElementById("langToggle");
+            const $langToggle2 = document.getElementById("langToggle2");
+            const $footerMade = document.getElementById("footerMade");
+            const $ctaTop = document.getElementById("ctaTop");
+            const $drawer = document.getElementById("drawer");
+            const $burger = document.getElementById("burger");
+            const $closeDrawer = document.getElementById("closeDrawer");
+
+            // ========= Util =========
+            const t = () => STRINGS[lang];
+            const pick = (obj) => obj?.[lang] ?? obj;
+
+            function escapeHtml(s) {
+                return String(s).replace(/[&<>"']/g, m => ({
+                    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
+                }[m]));
+            }
+
+            function setActiveNav(route) {
+                document.querySelectorAll(".nav__link").forEach(a => a.classList.remove("active"));
+                const map = {
+                    "/about": "about",
+                    "/focus": "focus",
+                    "/experience": "exp",
+                    "/stack": "stack",
+                    "/education": "edu",
+                    "/contact": "contact"
+                };
+                const key = map[route];
+                if (!key) return;
+                document.querySelectorAll(`[data-nav="${key}"]`).forEach(a => a.classList.add("active"));
+            }
+
+            function closeDrawer() {
+                $drawer.classList.remove("open");
+                $drawer.setAttribute("aria-hidden", "true");
+                $burger.setAttribute("aria-expanded", "false");
+            }
+
+            function openDrawer() {
+                $drawer.classList.add("open");
+                $drawer.setAttribute("aria-hidden", "false");
+                $burger.setAttribute("aria-expanded", "true");
+            }
+
+            // ========= Render =========
+            function render(route) {
+                // Update top labels
+                document.documentElement.lang = lang;
+                const S = t();
+
+                // Nav labels (top + drawer)
+                const navMap = [
+                    ["about", S.nav.about],
+                    ["focus", S.nav.focus],
+                    ["exp", S.nav.exp],
+                    ["stack", S.nav.stack],
+                    ["edu", S.nav.edu],
+                    ["contact", S.nav.contact]
+                ];
+                navMap.forEach(([k, label]) => {
+                    document.querySelectorAll(`[data-nav="${k}"]`).forEach(el => el.textContent = label);
+                    document.querySelectorAll(`[data-drawer="${k}"]`).forEach(el => el.textContent = label);
+                });
+
+                $ctaTop.textContent = S.hero.primary;
+                document.getElementById("ctaDrawer").textContent = S.hero.primary;
+                $footerMade.textContent = S.footer.made;
+
+                // Main content (SPA)
+                const hero = `
+      <section class="hero reveal">
+        <div class="heroCard">
+          <div class="heroTop">
+            <div class="badge"><span class="pulse"></span>${escapeHtml(S.hero.badge)}</div>
+          </div>
+          <h1 class="h1">${escapeHtml(S.hero.title)}</h1>
+          <p class="subtitle">${escapeHtml(S.hero.subtitle)}</p>
+          <div class="heroActions">
+            <a class="btn btn--primary" href="#/contact">${escapeHtml(S.hero.primary)}</a>
+            <a class="btn" href="${escapeHtml(DATA.github)}" target="_blank" rel="noreferrer">${escapeHtml(S.hero.secondary)}</a>
+          </div>
+          <div class="chips">
+            ${DATA.chips.map(c => `<span class="chip">${escapeHtml(pick(c))}</span>`).join("")}
+          </div>
+        </div>
+      </section>
+    `;
+
+                const about = `
+      <section class="section reveal" id="about">
+        <div class="section__head">
+          <h2 class="h2">${escapeHtml(S.about.title)}</h2>
+          <div class="kicker">${escapeHtml(pick(DATA.location))}</div>
+        </div>
+        <div class="grid2">
+          <div class="card">
+            <h3 class="cardTitle">${escapeHtml(S.about.title)}</h3>
+            <p class="cardText">${escapeHtml(S.about.text)}</p>
+            <div class="tagRow">
+              <span class="tag accent">REST</span>
+              <span class="tag accent">JWT</span>
+              <span class="tag">Docker</span>
+              <span class="tag">GitFlow</span>
+              <span class="tag ok">${escapeHtml(pick(DATA.languages[1]))}</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3 class="cardTitle">${escapeHtml(lang === "es" ? "Resumen rápido" : "Quick snapshot")}</h3>
+            <p class="cardText">
+              <b>${escapeHtml(lang === "es" ? "Backend" : "Backend")}</b>: Java (Spring Boot), PHP (Laravel), Python (FastAPI).<br/>
+              <b>${escapeHtml(lang === "es" ? "Seguridad" : "Security")}</b>: API security, hardening, secure practices.<br/>
+              <b>${escapeHtml(lang === "es" ? "Operativa" : "Operations")}</b>: soporte IT, automatización, foco en usuario.
+            </p>
+            <div class="tagRow">
+              <span class="tag warn">MySQL</span>
+              <span class="tag warn">PostgreSQL</span>
+              <span class="tag">Linux</span>
+              <span class="tag">Windows</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    `;
+
+                const focus = `
+      <section class="section reveal" id="focus">
+        <div class="section__head">
+          <h2 class="h2">${escapeHtml(S.focus.title)}</h2>
+          <div class="kicker">${escapeHtml(lang === "es" ? "Especializaciones conectadas por un núcleo técnico común." : "Multiple specializations, one consistent technical core.")}</div>
+        </div>
+        <div class="cards">
+          ${DATA.focus.map(item => `
+            <article class="card">
+              <h3 class="cardTitle">${escapeHtml(pick(item.title))}</h3>
+              <p class="cardText">${escapeHtml(pick(item.text))}</p>
+              <div class="tagRow">
+                ${item.tags.map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}
+              </div>
+            </article>
+          `).join("")}
+        </div>
+      </section>
+    `;
+
+                const experience = `
+      <section class="section reveal" id="experience">
+        <div class="section__head">
+          <h2 class="h2">${escapeHtml(S.exp.title)}</h2>
+          <div class="kicker">${escapeHtml(S.exp.note)}</div>
+        </div>
+        <div class="timeline">
+          ${DATA.experience.map(e => `
+            <div class="titem">
+              <div>
+                <div class="when">${escapeHtml(e.when)}</div>
+                <div class="where">${escapeHtml(e.org)}</div>
+              </div>
+              <div>
+                <div class="role">${escapeHtml(pick(e.role))}</div>
+                <ul class="bullets">
+                  ${pick(e.bullets).map(b => `<li>${escapeHtml(b)}</li>`).join("")}
+                </ul>
+              </div>
+            </div>
+          `).join("")}
+        </div>
+      </section>
+    `;
+
+                const stack = `
+      <section class="section reveal" id="stack">
+        <div class="section__head">
+          <h2 class="h2">${escapeHtml(S.stack.title)}</h2>
+          <div class="kicker">${escapeHtml(lang === "es" ? "Tecnologías principales (orientado a backend y seguridad)." : "Main technologies (backend & security oriented).")}</div>
+        </div>
+        <div class="stackGrid">
+          ${DATA.stack.map(s => `
+            <div class="stackItem">
+              <b>${escapeHtml(s.name)}</b>
+              <span>${escapeHtml(s.level)}</span>
+            </div>
+          `).join("")}
+        </div>
+      </section>
+    `;
+
+                const education = `
+      <section class="section reveal" id="education">
+        <div class="section__head">
+          <h2 class="h2">${escapeHtml(S.edu.title)}</h2>
+          <div class="kicker">${escapeHtml(lang === "es" ? "Formación + idiomas." : "Education + languages.")}</div>
+        </div>
+        <div class="grid2">
+          <div class="card">
+            <h3 class="cardTitle">${escapeHtml(S.edu.title)}</h3>
+            <ul class="bullets">
+              ${DATA.education.map(x => `<li>${escapeHtml(pick(x))}</li>`).join("")}
+            </ul>
+          </div>
+          <div class="card">
+            <h3 class="cardTitle">${escapeHtml(lang === "es" ? "Idiomas" : "Languages")}</h3>
+            <ul class="bullets">
+              ${DATA.languages.map(x => `<li>${escapeHtml(pick(x))}</li>`).join("")}
+            </ul>
+            <div class="tagRow">
+              <span class="tag accent">${escapeHtml(lang === "es" ? "Disponible" : "Available")}</span>
+              <span class="tag">${escapeHtml(lang === "es" ? "Madrid" : "Madrid")}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    `;
+
+                const contact = `
+      <section class="section reveal" id="contact">
+        <div class="section__head">
+          <h2 class="h2">${escapeHtml(S.contact.title)}</h2>
+          <div class="kicker">${escapeHtml(lang === "es" ? "Respondo rápido y encantado." : "Fast replies, happy to connect.")}</div>
+        </div>
+
+        <div class="contactGrid">
+          <div class="card">
+            <h3 class="cardTitle">${escapeHtml(lang === "es" ? "Mensaje directo" : "Direct message")}</h3>
+            <p class="cardText">
+              ${escapeHtml(lang === "es"
+                    ? "Si te interesa mi perfil, escríbeme y te paso CV completo y proyectos."
+                    : "If you’re interested, email me and I’ll share my full CV and projects.")}
+            </p>
+            <div class="heroActions" style="margin-top:12px">
+              <a class="btn btn--primary" href="mailto:${escapeHtml(DATA.email)}">${escapeHtml(S.hero.primary)}</a>
+              <a class="btn" href="${escapeHtml(DATA.github)}" target="_blank" rel="noreferrer">${escapeHtml(S.hero.secondary)}</a>
+            </div>
+        
+          </div>
+
+          <div class="card">
+            <h3 class="cardTitle">${escapeHtml(lang === "es" ? "Detalles" : "Details")}</h3>
+
+            <div class="kv">
+              <div><div class="k">${escapeHtml(S.contact.email)}</div><div class="v">${escapeHtml(DATA.email)}</div></div>
+              <button class="btn btn--ghost copyBtn" data-copy="${escapeHtml(DATA.email)}">${escapeHtml(S.contact.copy)}</button>
+            </div>
+
+            <div class="kv" style="margin-top:10px">
+              <div><div class="k">${escapeHtml(S.contact.phone)}</div><div class="v">${escapeHtml(DATA.phone)}</div></div>
+              <button class="btn btn--ghost copyBtn" data-copy="${escapeHtml(DATA.phone)}">${escapeHtml(S.contact.copy)}</button>
+            </div>
+
+            <div class="kv" style="margin-top:10px">
+              <div><div class="k">${escapeHtml(S.contact.location)}</div><div class="v">${escapeHtml(pick(DATA.location))}</div></div>
+              <span class="tag accent">UTC+1</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    `;
+
+                // Home = hero + about + focus + experience + stack + education + contact
+                const home = hero + about + focus + experience + stack + education + contact;
+
+                // Route rendering (hash-based SPA)
+                const routes = {
+                    "/": home,
+                    "/about": hero + about,
+                    "/focus": hero + focus,
+                    "/experience": hero + experience,
+                    "/stack": hero + stack,
+                    "/education": hero + education,
+                    "/contact": hero + contact
+                };
+
+                $app.innerHTML = routes[route] || home;
+                setActiveNav(route);
+
+                // Smooth scroll to section when route matches
+                const idMap = {
+                    "/about": "about",
+                    "/focus": "focus",
+                    "/experience": "experience",
+                    "/stack": "stack",
+                    "/education": "education",
+                    "/contact": "contact"
+                };
+                const targetId = idMap[route];
+                if (targetId) {
+                    const el = document.getElementById(targetId);
+                    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                } else {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                }
+
+                // Reveal animations
+                setupReveal();
+                // Copy buttons
+                setupCopy();
+            }
+
+            function setupCopy() {
+                document.querySelectorAll("[data-copy]").forEach(btn => {
+                    btn.addEventListener("click", async () => {
+                        const value = btn.getAttribute("data-copy");
+                        try {
+                            await navigator.clipboard.writeText(value);
+                            btn.textContent = lang === "es" ? "Copiado" : "Copied";
+                            setTimeout(() => btn.textContent = t().contact.copy, 900);
+                        } catch {
+                            // fallback
+                            const ta = document.createElement("textarea");
+                            ta.value = value;
+                            document.body.appendChild(ta);
+                            ta.select();
+                            document.execCommand("copy");
+                            ta.remove();
+                            btn.textContent = lang === "es" ? "Copiado" : "Copied";
+                            setTimeout(() => btn.textContent = t().contact.copy, 900);
+                        }
+                    }, { once: true });
+                });
+            }
+
+            function setupReveal() {
+                const els = document.querySelectorAll(".reveal");
+                const io = new IntersectionObserver((entries) => {
+                    for (const e of entries) {
+                        if (e.isIntersecting) {
+                            e.target.classList.add("in");
+                            io.unobserve(e.target);
+                        }
+                    }
+                }, { threshold: 0.12 });
+                els.forEach(el => io.observe(el));
+            }
+
+            // ========= Router =========
+            function getRoute() {
+                const h = location.hash || "#/";
+                const path = h.replace(/^#/, "");
+                // Normaliza: "#/about" => "/about"
+                return path.startsWith("/") ? path : "/";
+            }
+
+            function navigate() {
+                const route = getRoute();
+                render(route);
+            }
+
+            // ========= Idioma =========
+            function toggleLang() {
+                lang = (lang === "es") ? "en" : "es";
+                localStorage.setItem(storageKey, lang);
+                navigate();
+            }
+
+            // ========= Events =========
+            window.addEventListener("hashchange", () => {
+                closeDrawer();
+                navigate();
+            });
+
+            $langToggle.addEventListener("click", toggleLang);
+            $langToggle2.addEventListener("click", () => { toggleLang(); closeDrawer(); });
+
+            $burger.addEventListener("click", () => {
+                const open = $drawer.classList.contains("open");
+                open ? closeDrawer() : openDrawer();
+            });
+            $closeDrawer.addEventListener("click", closeDrawer);
+            $drawer.addEventListener("click", (e) => {
+                if (e.target.tagName === "A") closeDrawer();
+            });
+
+            // First render
+            navigate();
+        })();
+
+    </script>
 </body>
 
 </html>
